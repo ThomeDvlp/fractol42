@@ -6,7 +6,7 @@
 /*   By: rthome-d <rthome-d@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:55:17 by rthome-d          #+#    #+#             */
-/*   Updated: 2023/02/27 14:19:25 by rthome-d         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:53:04 by rthome-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,18 @@ int	main(void)
 	void	*mlx;
 	void	*mlx_win;
 	t_data img;
+	int		i = -1;
+
 
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-
-		mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Fract-ol");
 	img.img = mlx_new_image(mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
-	my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+	while (++i<1080)
+		my_mlx_pixel_put(&img, i, i, 0xffff00);
 
-	
+	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+
+	mlx_loop(mlx);	
 }
