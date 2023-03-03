@@ -1,5 +1,7 @@
 NAME		=	fractol
 
+LIBFT		=	./libft/libft.a
+
 CC			=	cc
 
 PTH_INCLUDE	=	./includes
@@ -27,14 +29,17 @@ endif
 .c.o:		
 			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I $(PTH_INCLUDE)
 
-all:		$(OBJ)
+$(NAME):   	$(OBJ)
 			make -C $(LIB_DIR)
 			make -C $(MLX)
 			$(CC) $(OBJ) $(OFLAGS) $(LIBFT) -o $(NAME) 
 
+all:		$(NAME)
+
+
 clean:
 			make clean -C $(LIB_DIR)
-		make clean -C $(MLX)
+			make clean -C $(MLX)
 			$(RM) $(OBJ)
 
 fclean:		clean
