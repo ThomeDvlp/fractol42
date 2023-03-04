@@ -6,11 +6,11 @@
 /*   By: rthome-d <rthome-d@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:55:17 by rthome-d          #+#    #+#             */
-/*   Updated: 2023/03/03 17:05:53 by rthome-d         ###   ########.fr       */
+/*   Updated: 2023/03/04 08:18:35 by rthome-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/fractol.h"
+#include "../includes/fractol.h"
 
 void	ft_pixel_put(t_fractal *data, int x, int y, int color)
 {
