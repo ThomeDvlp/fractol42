@@ -12,15 +12,7 @@
 
 #include "./includes/fractol.h"
 
-
-/* typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits;
-	int		line;
-	int		endian;
-}				t_data; */
-void	my_mlx_pixel_put(t_fractal *data, int x, int y, int color)
+void	ft_pixel_put(t_fractal *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -39,96 +31,96 @@ void	mlx_fractol(t_fractal *fr)
 	fr->img = mlx_new_image(fr->mlx, W, W);
 	fr->addr = mlx_get_data_addr(fr->img, &fr->bits, &fr->line, &fr->endian);
 }
-void	cases1(t_color *colors)
+void	case_1(t_color *color)
 {
-	if (colors->i == 0)
+	if (color->i == 0)
 	{
-		colors->red = colors->v;
-		colors->green = colors->t;
-		colors->blue = colors->p;
+		color->red = color->v;
+		color->green = color->t;
+		color->blue = color->p;
 	}
-	if (colors->i == 1)
+	if (color->i == 1)
 	{
-		colors->red = colors->q;
-		colors->green = colors->v;
-		colors->blue = colors->p;
+		color->red = color->q;
+		color->green = color->v;
+		color->blue = color->p;
 	}
-	if (colors->i == 2)
+	if (color->i == 2)
 	{
-		colors->red = colors->p;
-		colors->green = colors->v;
-		colors->blue = colors->t;
+		color->red = color->p;
+		color->green = color->v;
+		color->blue = color->t;
 	}
 }
 
-void	cases2(t_color *colors)
+void	case_2(t_color *color)
 {
-	if (colors->i == 3)
+	if (color->i == 3)
 	{
-		colors->red = colors->p;
-		colors->green = colors->q;
-		colors->blue = colors->v;
+		color->red = color->p;
+		color->green = color->q;
+		color->blue = color->v;
 	}
-	if (colors->i == 4)
+	if (color->i == 4)
 	{
-		colors->red = colors->t;
-		colors->green = colors->p;
-		colors->blue = colors->v;
+		color->red = color->t;
+		color->green = color->p;
+		color->blue = color->v;
 	}
-	if (colors->i == 5)
+	if (color->i == 5)
 	{
-		colors->red = colors->v;
-		colors->green = colors->p;
-		colors->blue = colors->q;
+		color->red = color->v;
+		color->green = color->p;
+		color->blue = color->q;
 	}
 }
 
-void	hsv_to_rgb(t_color *colors)
+void	hsv_to_rgb(t_color *color)
 {
-	if (colors->s == 0)
+	if (color->s == 0)
 	{
-		colors->r = colors->v;
-		colors->g = colors->v;
-		colors->b = colors->v;
+		color->r = color->v;
+		color->g = color->v;
+		color->b = color->v;
 	}
 	else
 	{
-		if (colors->h == 360)
-			colors->h = 0;
+		if (color->h == 360)
+			color->h = 0;
 		else
-			colors->h = colors->h / 60;
+			color->h = color->h / 60;
 	}
-	colors->i = (int)trunc(colors->h);
-	colors->f = colors->h - colors->i;
-	colors->p = colors->v * (1.0 - colors->s);
-	colors->q = colors->v * (1.0 - (colors->s * colors->f));
-	colors->t = colors->v * (1.0 - (colors->s * (1.0 - colors->f)));
-	cases1(colors);
-	cases2(colors);
-	colors->r = colors->red * 255;
-	colors->g = colors->green * 255;
-	colors->b = colors->blue * 255;
+	color->i = (int)trunc(color->h);
+	color->f = color->h - color->i;
+	color->p = color->v * (1.0 - color->s);
+	color->q = color->v * (1.0 - (color->s * color->f));
+	color->t = color->v * (1.0 - (color->s * (1.0 - color->f)));
+	case_1(color);
+	case_2(color);
+	color->r = color->red * 255;
+	color->g = color->green * 255;
+	color->b = color->blue * 255;
 }
 
-void	ft_rgb(t_color *colors)
+void	ft_rgb(t_color *color)
 {
-	colors->rgb = colors->r;
-	colors->rgb = (colors->rgb << 8) | colors->g;
-	colors->rgb = (colors->rgb << 8) | colors->b;
+	color->rgb = color->r;
+	color->rgb = (color->rgb << 8) | color->g;
+	color->rgb = (color->rgb << 8) | color->b;
 }
 
-void	put_colors(t_fractal *fr)
+void	put_color(t_fractal *fr)
 {
-	t_color	colors;
+	t_color	color;
 
-	colors.h = 100 * fr->iter;
-	colors.s = 0.5;
-	colors.v = 0.5;
-	while (colors.h > 360)
-		colors.h = colors.h - 360;
-	hsv_to_rgb(&colors);
-	ft_rgb(&colors);
-	my_mlx_pixel_put(fr, fr->x, fr->y, colors.rgb);
+	color.h = 100 * fr->iter;
+	color.s = 0.5;
+	color.v = 0.5;
+	while (color.h > 360)
+		color.h = color.h - 360;
+	hsv_to_rgb(&color);
+	ft_rgb(&color);
+	ft_pixel_put(fr, fr->x, fr->y, color.rgb);
 }
 
 int	handle_keys(int button, t_fractal *fr)
@@ -229,9 +221,9 @@ void	put_mandelbrot(t_fractal *fr)
 		fr->zi = temp;
 	}
 	if (is_fr == 1)
-		my_mlx_pixel_put(fr, fr->x, fr->y, 0x00000000);
+		ft_pixel_put(fr, fr->x, fr->y, 0x00000000);
 	if (is_fr == 0)
-		put_colors(fr);
+		put_color(fr);
 }
 void	draw_mandelbrot(t_fractal *fr)
 {
@@ -266,9 +258,9 @@ void	put_julia(t_fractal *fr)
 		fr->zi = temp;
 	}
 	if (is_fr == 1)
-		my_mlx_pixel_put(fr, fr->x, fr->y, 0x00000000);
+		ft_pixel_put(fr, fr->x, fr->y, 0x00000000);
 	if (is_fr == 0)
-		put_colors(fr);
+		put_color(fr);
 }
 void	draw_julia(t_fractal *fr)
 {
@@ -413,7 +405,7 @@ void	test_julia(char *argv1, char *argv2)
 	}
 }
 
-int	fractol_error(int argc, char *argv[])
+int	ft_errors(int argc, char *argv[])
 {
 	if (argc == 1 || argc == 3 || argc > 4)
 	{
@@ -430,10 +422,6 @@ int	fractol_error(int argc, char *argv[])
 	ft_putstr_fd("Wrong arguments try:\nmandelbrot;\njulia, cr, ci;", 2);
 	exit (0);
 }
-
-
-
-
 
 int	ft_strcmp(char *s1, char *s2)
 {
@@ -457,50 +445,22 @@ int	ft_strcmp(char *s1, char *s2)
 
 int	main(int argc, char *argv[])
 {
-/* 	void	*mlx;
-	void	*mlx_win; */
 	t_fractal fr;
-/* 	int		i = -1;
-	int		j = -1;
-	double	k;
-	double	l; */
+	int			validate_args;
 
-	int			test_args;
-
-	test_args = fractol_error(argc, argv);
+	validate_args = ft_errors(argc, argv);
 	mlx_fractol(&fr);
-	if (test_args == 1)
+	if (validate_args == 1)
 		fr.what_fractol = 1;
-	if (test_args == 2)
+	if (validate_args == 2)
 	{
 		fr.cr = my_atof(argv[2]);
 		fr.ci = my_atof(argv[3]);
 		fr.what_fractol = 0;
 	}
-/* 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Fract-ol");
-	fr.img = mlx_new_image(mlx, 1920, 1080);
-	fr.addr = mlx_get_data_addr(fr.img, &fr.bits, &fr.line,
-								&fr.endian);
-	while (++i<1080)
-	{
-		while (++j < 1920)
-		{
-			k = -2 + (double) j * (4 / 1920);
-			l = -1.5 + (double) i * (1 / 1080);
-			my_mlx_pixel_put(&fr, j, i, 0x4f94cd);
-		}
-		j = -1;
-	} */
-/* 
-	while (++i<1080)
-		my_mlx_pixel_put(&img, i + 1, i, 0xfff0f5); */
-
-/* 	mlx_put_image_to_window(mlx, mlx_win, fr.img, 0, 0); */
 	mlx_key_hook(fr.mlx_win, handle_keys, &fr);
 	mlx_mouse_hook(fr.mlx_win, handle_mouse, &fr);
 	mlx_hook(fr.mlx_win, 17, 0L, handle_close, &fr);
 	mlx_loop_hook(fr.mlx, render_fr, &fr);
 	mlx_loop(fr.mlx);
-/* 	mlx_loop(mlx);	 */
 }

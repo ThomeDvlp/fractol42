@@ -19,7 +19,7 @@ RM			=	rm -fr
 UNAME		= $(shell uname)
 
 ifeq ($(UNAME), Linux)
-	OFLAGS	=	$(CFLAGS) -L ./mlx_linux -lmlx_Linux -L /usr/lib -I mlx_linux -lXext -lX11 -lm -lz 
+	OFLAGS	=	$(CFLAGS) -L ./mlx_Linux -lmlx_Linux -L /usr/lib -I mlx_linux -lXext -lX11 -lm -lz 
 	MLX		=	./mlx_Linux
 else
 	OFLAGS	= 	$(CFLAGS) -L ./mlx -lmlx -framework OpenGL -framework AppKit
