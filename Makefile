@@ -17,9 +17,14 @@ PTH_INCLUDE	=	./includes
 
 CFLAGS		=	-Wall -Wextra -Werror -g
 
-SRC_FILES	=	fractol.c
+SRC_FILES	=	fractol.c		
 
-SRC			=	$(addprefix src/, $(SRC_FILES))
+SRC_MLX_CTL	=	mlx_px_setter.c									\
+				mlx_controller.c								\
+				mlx_methods.c
+
+SRC			=	$(addprefix src/, $(SRC_FILES))					\
+				$(addprefix mlx_controller/, $(SRC_MLX_CTL))	
 
 LIB_DIR		= 	./libft
 
@@ -31,7 +36,7 @@ UNAME		= $(shell uname)
 
 ifeq ($(UNAME), Linux)
 	OFLAGS	=	$(CFLAGS) -L ./mlx_Linux -lmlx_Linux -L /usr/lib -I mlx_linux -lXext -lX11 -lm -lz 
-	MLX		=	./mlx_Linux
+		MLX		=	./mlx_Linux
 else
 	OFLAGS	= 	$(CFLAGS) -L ./mlx -lmlx -framework OpenGL -framework AppKit
 	MLX		= 	./mlx
@@ -43,7 +48,7 @@ endif
 $(NAME):   	$(OBJ)
 			make -C $(LIB_DIR)
 			make -C $(MLX)
-			$(CC) $(OBJ) $(OFLAGS) $(LIBFT) -o $(NAME) 
+			$(CC) $(OFLAGS)  -o $(NAME) $(OBJ) $(LIBFT)
 
 all:		$(NAME)
 

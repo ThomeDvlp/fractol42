@@ -6,7 +6,7 @@
 /*   By: rthome-d <rthome-d@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:44:33 by rthome-d          #+#    #+#             */
-/*   Updated: 2023/03/03 16:31:02 by rthome-d         ###   ########.fr       */
+/*   Updated: 2023/03/06 16:21:17 by rthome-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,30 @@ typedef struct s_fractal
 	int		line;
 	int		endian;
 } t_fractal;
+
+void	ft_pixel_put(t_fractal *data, int x, int y, int color);
+
+void	mlx_controller(t_fractal *fr);
+
+void	case_1(t_color *color);
+
+void	case_2(t_color *color);
+
+void	hsv_to_rgb(t_color *color);
+
+void	ft_rgb(t_color *color);
+
+void	put_color(t_fractal *fr);
+
+int		handle_keys(int button, t_fractal *fr);
+
+int		handle_close(t_fractal *fr);
+
+void	fractol_zoom_in(t_fractal *fr);
+
+void	fractol_zoom_out(t_fractal *fr);
+
+void	move(t_fractal *f, double distance, char direction);
 
 
 #endif
