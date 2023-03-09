@@ -6,7 +6,7 @@
 /*   By: rthome-d <rthome-d@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:44:33 by rthome-d          #+#    #+#             */
-/*   Updated: 2023/03/06 16:21:17 by rthome-d         ###   ########.fr       */
+/*   Updated: 2023/03/09 15:25:45 by rthome-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # include "../mlx/mlx.h"
 # include <math.h>
 
-# define W 500
+# define W 1280
+# define H 720
 # define MAX_ITER 1000
 
 typedef struct s_color
@@ -36,7 +37,7 @@ typedef struct s_color
 	double	t;
 	int		i;
 	int		rgb;
-} t_color;
+}	t_color;
 
 typedef struct s_fractal
 {
@@ -60,7 +61,7 @@ typedef struct s_fractal
 	int		bits;
 	int		line;
 	int		endian;
-} t_fractal;
+}	t_fractal;
 
 void	ft_pixel_put(t_fractal *data, int x, int y, int color);
 
@@ -80,11 +81,20 @@ int		handle_keys(int button, t_fractal *fr);
 
 int		handle_close(t_fractal *fr);
 
+int		handle_mouse(int button, int x, int y, t_fractal *fr);
+
 void	fractol_zoom_in(t_fractal *fr);
 
 void	fractol_zoom_out(t_fractal *fr);
 
 void	move(t_fractal *f, double distance, char direction);
 
+void	draw_mandelbrot(t_fractal *fr);
+
+void	draw_julia(t_fractal *fr);
+
+void	test_julia(char *argv1, char *argv2);
+
+double	fract_atoi(char *str);
 
 #endif

@@ -17,14 +17,19 @@ PTH_INCLUDE	=	./includes
 
 CFLAGS		=	-Wall -Wextra -Werror -g
 
-SRC_FILES	=	fractol.c		
+SRC_FILES	=	fractol.c										\
+				mandelbrot.c									\
+				julia.c
+
+SRC_VAL		=	arg_checker.c
 
 SRC_MLX_CTL	=	mlx_px_setter.c									\
 				mlx_controller.c								\
 				mlx_methods.c
 
 SRC			=	$(addprefix src/, $(SRC_FILES))					\
-				$(addprefix mlx_controller/, $(SRC_MLX_CTL))	
+				$(addprefix mlx_controller/, $(SRC_MLX_CTL))	\
+				$(addprefix validation/, $(SRC_VAL))
 
 LIB_DIR		= 	./libft
 

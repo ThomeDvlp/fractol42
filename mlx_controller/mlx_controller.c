@@ -6,7 +6,7 @@
 /*   By: rthome-d <rthome-d@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 15:55:21 by rthome-d          #+#    #+#             */
-/*   Updated: 2023/03/06 16:19:33 by rthome-d         ###   ########.fr       */
+/*   Updated: 2023/03/09 14:51:27 by rthome-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,31 @@ int	handle_keys(int button, t_fractal *fr)
 	}
 	return (fr->iter);
 }
+
+
+int	handle_mouse(int button, int x, int y, t_fractal *fr)
+{
+	if (button == 1)
+	{
+		x -= W / 2;
+		y -= W / 2;
+		if (x < 0)
+			move(fr, (double)x / W, 'R');
+		else if (x > 0)
+			move(fr, (double)x * -1 / W, 'L');
+		if (y < 0)
+			move(fr, (double)y * -1 / W, 'D');
+		else if (y > 0)
+			move (fr, (double)y / W, 'U');
+		fr->render = 0;
+	}
+	if (button == 4)
+		fractol_zoom_in(fr);
+	if (button == 5)
+		fractol_zoom_out(fr);
+	return (fr->iter);
+}
+
 
 int	handle_close(t_fractal *fr)
 {
