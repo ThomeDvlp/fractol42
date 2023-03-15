@@ -40,8 +40,8 @@ RM			=	rm -fr
 UNAME		= $(shell uname)
 
 ifeq ($(UNAME), Linux)
-	OFLAGS	=	$(CFLAGS) -L ./mlx_Linux -lmlx_Linux -L /usr/lib -I mlx_linux -lXext -lX11 -lm -lz 
-		MLX		=	./mlx_Linux
+	OFLAGS	=	$(CFLAGS) -L ./mlx_Linux -lmlx_Linux -L /usr/lib -I mlx_Linux -lXext -lX11 -lm -lz 
+	MLX		=	./mlx_Linux
 else
 	OFLAGS	= 	$(CFLAGS) -L ./mlx -lmlx -framework OpenGL -framework AppKit
 	MLX		= 	./mlx
@@ -53,7 +53,7 @@ endif
 $(NAME):   	$(OBJ)
 			make -C $(LIB_DIR)
 			make -C $(MLX)
-			$(CC) $(OFLAGS)  -o $(NAME) $(OBJ) $(LIBFT)
+			$(CC) $(OBJ) $(OFLAGS)  -o $(NAME) $(LIBFT)
 
 all:		$(NAME)
 
