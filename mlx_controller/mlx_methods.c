@@ -6,7 +6,7 @@
 /*   By: rthome-d <rthome-d@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 16:11:06 by rthome-d          #+#    #+#             */
-/*   Updated: 2023/03/06 16:45:05 by rthome-d         ###   ########.fr       */
+/*   Updated: 2023/03/16 19:28:36 by rthome-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,46 +73,46 @@ void	move(t_fractal *f, double distance, char direction)
 	}
 }
 
-void	case_1(t_color *color)
+void	pallete_1(t_color *color)
 {
 	if (color->i == 0)
 	{
-		color->red = color->v;
-		color->green = color->t;
-		color->blue = color->p;
+		color->red = color->m;
+		color->green = color->y;
+		color->blue = color->c;
 	}
 	if (color->i == 1)
 	{
-		color->red = color->q;
-		color->green = color->v;
-		color->blue = color->p;
+		color->red = color->y;
+		color->green = color->m;
+		color->blue = color->c;
 	}
 	if (color->i == 2)
 	{
-		color->red = color->p;
-		color->green = color->v;
-		color->blue = color->t;
+		color->red = color->y;
+		color->green = color->c;
+		color->blue = color->m;
 	}
 }
 
-void	case_2(t_color *color)
+void	pallete_2(t_color *color)
 {
 	if (color->i == 3)
 	{
-		color->red = color->p;
-		color->green = color->q;
-		color->blue = color->v;
+		color->red = color->y;
+		color->green = color->c;
+		color->blue = color->m;
 	}
 	if (color->i == 4)
 	{
-		color->red = color->t;
-		color->green = color->p;
-		color->blue = color->v;
+		color->red = color->m;
+		color->green = color->y;
+		color->blue = color->c;
 	}
 	if (color->i == 5)
 	{
-		color->red = color->v;
-		color->green = color->p;
-		color->blue = color->q;
+		color->red = color->c;
+		color->green = color->y;
+		color->blue = color->m;
 	}
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pixel_put.c                                     :+:      :+:    :+:   */
+/*   mlx_px_setter.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rthome-d <rthome-d@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 12:18:01 by rthome-d          #+#    #+#             */
-/*   Updated: 2023/03/06 16:31:23 by rthome-d         ###   ########.fr       */
+/*   Updated: 2023/03/16 20:07:28 by rthome-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ void	ft_pixel_put(t_fractal *data, int x, int y, int color)
 	char	*dst;
 
 	dst = data->addr + (y * data->line + x * (data->bits / 8));
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
 }
 
 void	hsv_to_rgb(t_color *color)
 {
 	if (color->s == 0)
 	{
-		color->r = color->v;
-		color->g = color->v;
-		color->b = color->v;
+		color->r = color->h;
+		color->g = color->h;
+		color->b = color->h;
 	}
 	else
 	{
@@ -37,11 +37,11 @@ void	hsv_to_rgb(t_color *color)
 	}
 	color->i = (int)trunc(color->h);
 	color->f = color->h - color->i;
-	color->p = color->v * (1.0 - color->s);
-	color->q = color->v * (1.0 - (color->s * color->f));
-	color->t = color->v * (1.0 - (color->s * (1.0 - color->f)));
-	case_1(color);
-	case_2(color);
+	color->y = color->v * (1.0 - color->s);
+	color->c = color->v * (1.0 - (color->s * color->f));
+	color->m = color->v * (1.0 - (color->s * (1.5 - color->f)));
+	pallete_1(color);
+	pallete_2(color);
 	color->r = color->red * 255;
 	color->g = color->green * 255;
 	color->b = color->blue * 255;
@@ -58,9 +58,9 @@ void	put_color(t_fractal *fr)
 {
 	t_color	color;
 
-	color.h = 100 * fr->iter;
-	color.s = 0.5;
-	color.v = 0.5;
+	color.h = 133 * fr->iter;
+	color.s = 0.6;
+	color.v = 0.6;
 	while (color.h > 360)
 		color.h = color.h - 360;
 	hsv_to_rgb(&color);

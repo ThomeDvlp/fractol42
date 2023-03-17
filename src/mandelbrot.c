@@ -6,7 +6,7 @@
 /*   By: rthome-d <rthome-d@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:40:55 by rthome-d          #+#    #+#             */
-/*   Updated: 2023/03/09 15:23:02 by rthome-d         ###   ########.fr       */
+/*   Updated: 2023/03/16 13:39:56 by rthome-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void	draw_mandelbrot(t_fractal *fr)
 	while (++fr->y < W)
 	{
 		fr->x = -1;
-		while (++fr->x < W)
+		while (++fr->x < H)
 		{
 			fr->cr = fr->min_r + (double)fr->x * ((fr->max_r - fr->min_r) / W);
-			fr->ci = fr->min_i + (double)fr->y * ((fr->max_i - fr->min_i) / W);
+			fr->ci = fr->min_i + (double)fr->y * ((fr->max_i - fr->min_i) / H);
 			put_mandelbrot(fr);
 		}
 	}

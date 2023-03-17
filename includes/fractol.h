@@ -6,7 +6,7 @@
 /*   By: rthome-d <rthome-d@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:44:33 by rthome-d          #+#    #+#             */
-/*   Updated: 2023/03/09 15:25:45 by rthome-d         ###   ########.fr       */
+/*   Updated: 2023/03/16 20:14:14 by rthome-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include "../mlx/mlx.h"
 # include <math.h>
 
-# define W 1280
-# define H 720
-# define MAX_ITER 1000
+# define W 666
+# define H 999
+# define MAX_ITER 666
 
 typedef struct s_color
 {
@@ -32,9 +32,9 @@ typedef struct s_color
 	double	s;
 	double	v;
 	double	f;
-	double	p;
-	double	q;
-	double	t;
+	double	y;
+	double	c;
+	double	m;
 	int		i;
 	int		rgb;
 }	t_color;
@@ -55,7 +55,7 @@ typedef struct s_fractal
 	int		y;
 	int		iter;
 	int		render;
-	int		what_fractol;
+	int		fractal;
 	void	*img;
 	char	*addr;
 	int		bits;
@@ -67,9 +67,9 @@ void	ft_pixel_put(t_fractal *data, int x, int y, int color);
 
 void	mlx_controller(t_fractal *fr);
 
-void	case_1(t_color *color);
+void	pallete_1(t_color *color);
 
-void	case_2(t_color *color);
+void	pallete_2(t_color *color);
 
 void	hsv_to_rgb(t_color *color);
 
@@ -95,6 +95,6 @@ void	draw_julia(t_fractal *fr);
 
 void	test_julia(char *argv1, char *argv2);
 
-double	fract_atoi(char *str);
+double	fracatoi(char *str);
 
 #endif

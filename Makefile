@@ -1,12 +1,3 @@
-NC			=	\e[0m
-RED			=	\e[0;91m
-ORANGE		=	\e[93m
-GREEN		=	\e[0;92m
-PURPLE		=	\e[0;95m
-BLUE		=	\e[0;34m
-BOLD		=	\e[1m
-RESET		=	\e[0m
-
 NAME		=	fractol
 
 LIBFT		=	./libft/libft.a

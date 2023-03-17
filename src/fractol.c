@@ -6,7 +6,7 @@
 /*   By: rthome-d <rthome-d@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:55:17 by rthome-d          #+#    #+#             */
-/*   Updated: 2023/03/09 15:21:34 by rthome-d         ###   ########.fr       */
+/*   Updated: 2023/03/16 20:14:11 by rthome-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	render_fr(t_fractal *fr)
 {
 	if (fr->render == 0)
 	{
-		if (fr->what_fractol == 1)
+		if (fr->fractal == 1)
 			draw_mandelbrot(fr);
-		if (fr->what_fractol == 0)
+		if (fr->fractal == 0)
 			draw_julia(fr);
 		mlx_put_image_to_window(fr->mlx, fr->mlx_win, fr->img, 0, 0);
 		fr->render = 1;
@@ -72,12 +72,12 @@ int	main(int argc, char *argv[])
 	validate_args = ft_errors(argc, argv);
 	mlx_controller(&fr);
 	if (validate_args == 1)
-		fr.what_fractol = 1;
+		fr.fractal = 1;
 	if (validate_args == 2)
 	{
-		fr.cr = fract_atoi(argv[2]);
-		fr.ci = fract_atoi(argv[3]);
-		fr.what_fractol = 0;
+		fr.cr = fracatoi(argv[2]);
+		fr.ci = fracatoi(argv[3]);
+		fr.fractal = 0;
 	}
 	mlx_key_hook(fr.mlx_win, handle_keys, &fr);
 	mlx_mouse_hook(fr.mlx_win, handle_mouse, &fr);

@@ -6,7 +6,7 @@
 /*   By: rthome-d <rthome-d@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 16:51:23 by rthome-d          #+#    #+#             */
-/*   Updated: 2023/03/09 15:19:28 by rthome-d         ###   ########.fr       */
+/*   Updated: 2023/03/16 20:14:06 by rthome-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ double	check_signal(char *str)
 		return (1);
 }
 
-double	fract_atoi(char *str)
+double	fracatoi(char *str)
 {
 	double	number;
 	size_t	size;
